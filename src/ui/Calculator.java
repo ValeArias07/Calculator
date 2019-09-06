@@ -1,66 +1,53 @@
 import java.util.Scanner;
+import java.lang.Math;
 
-public class Calcu1
+public class Calculator
 {
 	public static void main (String args[])
 	{
-		
 		Scanner nreader=new Scanner(System.in);
 		Scanner sreader=new Scanner(System.in);
 		
 		int a;
+		int b;
 		int re=0;
-		int recon=0;
+		int memory []= new int[10];
 		double rem=0;
 		String op=" ";
 		boolean choice=false;
-		
-		boolean pato=true;
 	
 		System.out.println("Welcome to the calculator, when you want to end the process write end");
-	
+			
 		while(choice !=true)	
 		{
-			
-		a=nreader.nextInt();
-		op=sreader.nextLine();
+			a=nreader.nextInt();
+			op=sreader.nextLine();
 			
 			if(op.equals("+")){
 				re=sum(nreader,a);
-				choice=opt(sreader,choice,re);
-				recon=re;
+				choice=opt(sreader,choice,re);	
 				}
 				else
 					if(op.equals("-")){
 					re=sub(nreader,a);
 					choice=opt(sreader,choice,re);	
-					recon=re;					
 					}
 				else
 					if(op.equals("*")){
 					re=mult(nreader,a);
-					choice=opt(sreader,choice,re);
-					recon=re;						
+					choice=opt(sreader,choice,re);				
 					}
 				else
 					if(op.equals("/")){
 					rem=div(nreader,a);
 					choice=opt(sreader,choice,re);	
-					recon=re;
+					
 					}
 				else
 					if(op.equals("%")){
 					rem=mod(nreader,a);
 					choice=opt(sreader,choice,re);		
-					recon=re;
 					}
-				else 
-					if(op.equals("^")){
-					re=pow(nreader,a);
-					choice=opt(sreader,choice,re);	
-					recon=re;
-					}
-					
 		}
 	}
 
@@ -74,26 +61,13 @@ public class Calcu1
 			choice=false;
 			}
 			else{
-				System.out.println("last number " +re);
+				if(op.equals("stop")){
 				choice=true;
 				}
-				
+			}
 	return choice;
 	}
-	
-	public static int met(Scanner nreader, boolean choice, int a, int recon, int re){
-	recon=re;
-
-		if(choice= true){
-			a=recon;
-			}
-			else
-				if(choice= false){
-				a=nreader.nextInt();
-				}
-	return a;
-	}
-				
+		
 	public static int sum(Scanner nreader,int a){
 		int b;
 		int re;
@@ -147,23 +121,8 @@ public class Calcu1
 	
 		return rem;
 	}
-	public static int pow(Scanner nreader, int a)
-	{
-		int b;
-		int re=1;
-		int ac=1;
-		
-		b=nreader.nextInt();
-		
-		for (int i = 0; i <b; i++) {
-		ac=a*ac;
-		}
-		re=ac;
-		System.out.println("the answer is " + re);
-		return re;
-	}
-	
-}			
+}
+
 
 
 
