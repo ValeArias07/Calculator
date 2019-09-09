@@ -5,7 +5,6 @@ public class Calculator
 {	
 	static final double π = 3.141592653589;
 	
-	
 	public static void main (String args[])
 	{
 		/**
@@ -30,8 +29,9 @@ public class Calculator
 		boolean choice=false;			
 		double memory[]=new double[10];
 		
-		System.out.println("Welcome to the calculator, when you want to end the process write end");
-		
+		System.out.println("Welcome to the calculator.\n You can do basic operations +, -, *, /, %");
+		System.out.println("And complex operations √,! ,*10 ,rad to grad, sin, cos, tan, log10, logb, nsquare \n");
+		System.out.println( "After an operation, you can type: \n memory- to access to the memory. \n reset- to reset memory. \n other- to do a new operation. \n stop- to end the program.\n \nLet's start typing the numbers");
 		while(choice !=true)	
 		{
 				a=nreader.nextDouble();
@@ -61,7 +61,7 @@ public class Calculator
 					re=pow(nreader,a);
 					}
 				else 
-					if(op.equals("square")){
+					if(op.equals("square")|| op.equals("√")){
 					re=square(a);
 					}
 				else 
@@ -97,19 +97,26 @@ public class Calculator
 						
 						re=logb(nreader,a);
 					}	
+				else 
+					if(op.equals("n square")|| op.equals("n√")){
+					re=nsquare(nreader, a);
+					}
+			if(c>=9){
+				
+				memory[c]=memory[c-1];
+				c=0;
+				}
+			
+			memory[c]=re;
 			choice=opt(sreader, choice, memory);
-			
-			memory[c]=memory[c+1];
-			memory[9]=re;
 			c++;
-			
 		}
-	}	
-	
+	}
 		
+
 	/** This method defines the variable choice as true in case the user wants
 	to make a flow of operations and defines it as false when the user wants to 
-	a new operation.
+	a new operation. In other hand, this method allow to show the memory array if the user wants.
  
 	<b> pre: It musth be inicialized the boolean variable choice </b>
 	<b> post: The boolean variable choice will be true or false </b>
@@ -134,10 +141,12 @@ public class Calculator
 			}
 				else
 					if(op.equals("memory")){
-						
+					while (c <= 9){
+					System.out.println("Memory position "+ c + " = " + memory[c]);
 					choice=false;
+					c++;
 					}
-
+				}
 				else
 					if(op.equals("stop")){
 					choice=true;
@@ -145,7 +154,7 @@ public class Calculator
 				else 
 					if(op.equals("reset")){
 					
-						for(int i=0; i<9; i++){
+						for(int i=0; i<=9; i++){
 						memory[i]=0;
 						}
 					choice=false;
@@ -477,6 +486,29 @@ public class Calculator
 	b=nreader.nextInt();
 	
 	re=Math.log(b)/Math.log10(a);
+	
+	System.out.println("the answer is " + re);
+	return re;
+	}
+	/** This method calculate the n square of a number using the Math library of Java.
+ 
+	<b> pre: It musth be inicialized the Scanner nreader and op="n√" </b>
+	<b> post: The variable re will have the n square of a</b>
+	
+	@param a Is the number that be calculate it n square root. a!=" " and a!=null.
+	@param nreader the scanner allow the reading of the variable b written by the user.
+	@return re It will be the solution of the operation.
+	
+	*/
+	public static double nsquare(Scanner nreader, double a)
+	{
+	double re;
+	double b;
+	
+	b=nreader.nextInt();
+	
+	re=Math.pow(a,1/b);
+	re=Math.ceil(re);
 	
 	System.out.println("the answer is " + re);
 	return re;
