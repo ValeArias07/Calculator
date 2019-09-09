@@ -265,7 +265,7 @@ public class Calculator
 	<b> pre: It musth be inicialized the Scanner nreader and op="√" </b>
 	<b> post: The variable re will have the square root of a</b>
 	
-	@param a Is the number that be calculate it square root. a!=" " and a!=null.
+	@param a Is the number that be calculate it square root. a!=" ". a!=null and a>0.
 	@return re It will be the solution of the operation.
 	
 	*/
@@ -281,6 +281,10 @@ public class Calculator
 				for(int i=0;i<8;i++)
 				a=(((a*a)+ac)/(2*a));
 			}
+			else{
+				if(ac < 0)
+					System.out.println("Sorry, square for negative numbers doesn`t exists");
+				}
 		re=a;
 		
 		System.out.println("the answer is " + re);
